@@ -20,6 +20,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.whyshoudi.quakereport.R;
+
 import java.util.ArrayList;
 
 public class EarthquakeActivity extends AppCompatActivity {

@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Saksham Raj Shokeen on 1/9/2018.
@@ -38,12 +40,42 @@ public class EarthquakeAdapter extends ArrayAdapter<extendedView> {
         extendedView Counter = getItem(position);
 
         TextView Magnitude = (TextView) listItemView.findViewById(R.id.Magnitude);
-        TextView Location = (TextView) listItemView.findViewById(R.id.Loction);
+        TextView PLocation = (TextView) listItemView.findViewById(R.id.PrimaryLoction);
+        TextView SLocation = (TextView) listItemView.findViewById(R.id.SeconadryLoction);
         TextView Date = (TextView) listItemView.findViewById(R.id.Date);
+        TextView Time = (TextView) listItemView.findViewById(R.id.time);
 
-        Location.setText(Counter.getLocation());
-        Date.setText(String.valueOf(Counter.getTime()));
         Magnitude.setText(String.valueOf(Counter.getMagnitude()));
+
+//      Location Display Code
+        String Location = Counter.getLocation();
+
+        if (Location.contains("of")==false){
+
+            PLocation.setText(Location);
+            SLocation.setText("near");
+
+        }
+else {
+            int ofIndex = Location.indexOf("of") + 3;
+            String secondary = Location.substring(0, ofIndex);
+            String primary = Location.substring(ofIndex, Location.length());
+
+            PLocation.setText(primary);
+            SLocation.setText(secondary);
+
+        }
+//      Time and Date Display code
+        long dateInMS = Counter.getTime();
+        Date dateObject = new Date(dateInMS);
+
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
+        SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:ss a");
+        String dateToDisplay = dateFormatter.format(dateObject);
+        String timeToDisplay = timeFormatter.format(dateObject);
+
+        Date.setText(dateToDisplay);
+        Time.setText(timeToDisplay);
 
         return listItemView;
     }

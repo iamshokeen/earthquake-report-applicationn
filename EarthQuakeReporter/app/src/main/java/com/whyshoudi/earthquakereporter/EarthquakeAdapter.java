@@ -42,7 +42,7 @@ public class EarthquakeAdapter extends ArrayAdapter<extendedView> {
         TextView Date = (TextView) listItemView.findViewById(R.id.Date);
 
         Location.setText(Counter.getLocation());
-        Date.setText(Counter.getDate());
+        Date.setText(String.valueOf(Counter.getTime()));
         Magnitude.setText(String.valueOf(Counter.getMagnitude()));
 
         return listItemView;

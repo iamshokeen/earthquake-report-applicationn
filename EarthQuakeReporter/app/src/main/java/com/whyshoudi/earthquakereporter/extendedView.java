@@ -7,13 +7,15 @@ package com.whyshoudi.earthquakereporter;
 public class extendedView {
   private   Double mMagnitude;
   private String mLocation;
-  private String mDate;
+  private long mTime;
+  private String mUrl;
 
 
-    public extendedView(Double Magnitude, String Location, String Date){
+    public extendedView(Double Magnitude, String Location, long Time, String Url){
         mMagnitude=Magnitude;
         mLocation=Location;
-        mDate=Date;
+        mTime=Time;
+        mUrl=Url;
     }
 
     public Double getMagnitude(){
@@ -22,7 +24,8 @@ public class extendedView {
     public String getLocation(){
         return mLocation;
     }
-    public String getDate(){
-        return mDate;
+    public long getTime(){
+        return mTime;
     }
+    public String getUrl(){return mUrl;}
 }
